@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:dictionary_flutter/utilities/constants.dart';
 
 void main() {
   runApp(const DictionaryApp());
@@ -9,6 +10,12 @@ class DictionaryApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return MaterialApp(
+      theme: ThemeData(
+        appBarTheme: AppBarTheme(
+          color: kAppBarColor;
+        ),
+      ),
+    );
   }
 }
