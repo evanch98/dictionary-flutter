@@ -12,8 +12,8 @@ class DictionaryApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        appBarTheme: AppBarTheme(
-          color: kAppBarColor;
+        appBarTheme: const AppBarTheme(
+          color: kAppBarColor,
         ),
       ),
     );
