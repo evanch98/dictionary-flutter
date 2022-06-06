@@ -16,7 +16,7 @@ class DictionaryApp extends StatelessWidget {
         appBarTheme: const AppBarTheme(
           color: kAppBarColor,
         ),
-        backgroundColor: kBackgroundColor,
+        scaffoldBackgroundColor: kBackgroundColor,
       ),
       home: const Home(),
     );
