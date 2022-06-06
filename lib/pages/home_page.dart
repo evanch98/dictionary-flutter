@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:dictionary_flutter/utilities/constants.dart';
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
+
+  @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  late String searchedWord;
 
   @override
   Widget build(BuildContext context) {
@@ -23,11 +30,12 @@ class Home extends StatelessWidget {
                       child: Container(
                         padding:
                             const EdgeInsets.fromLTRB(20.0, 20.0, 0.0, 20.0),
-                        child: const TextField(
-                          style: TextStyle(
-                            color: Colors.black,
-                          ),
+                        child: TextField(
+                          style: kTextFieldColorStyle,
                           decoration: kTextFieldInputDecoration,
+                          onChanged: (String value) {
+                            searchedWord = value;
+                          },
                         ),
                       ),
                     ),
@@ -38,6 +46,13 @@ class Home extends StatelessWidget {
                       ),
                     ),
                   ],
+                ),
+              ),
+              const Expanded(
+                flex: 5,
+                child: Text(
+                  'Free Dictionary',
+                  style: kHomePageTextStyle,
                 ),
               ),
             ],

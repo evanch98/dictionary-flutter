@@ -19,8 +19,18 @@ const kTextFieldInputDecoration = InputDecoration(
   ),
 );
 
+const kTextFieldColorStyle = TextStyle(
+  color: Colors.black,
+);
+
 const kSearchIcon = Icon(
   Icons.search,
   size: 40.0,
   color: kWidgetColor,
+);
+
+const kHomePageTextStyle = TextStyle(
+  fontSize: 30.0,
+  fontWeight: FontWeight.bold,
+  color: Color(0xFFFFB085),
 );
