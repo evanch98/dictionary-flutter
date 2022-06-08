@@ -39,3 +39,8 @@ const kSearchedWordTextStyle = TextStyle(
   fontSize: 30.0,
   fontWeight: FontWeight.bold,
 );
+
+const kPhoneticTextStyle = TextStyle(
+  fontSize: 15.0,
+  fontWeight: FontWeight.bold,
+);

@@ -49,11 +49,12 @@ class _WordPageState extends State<WordPage> {
         centerTitle: true,
       ),
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
@@ -79,9 +80,15 @@ class _WordPageState extends State<WordPage> {
                   ),
                 ],
               ),
-            ),
-            Text(phonetic),
-          ],
+              const SizedBox(
+                height: 5.0,
+              ),
+              Text(
+                phonetic,
+                style: kPhoneticTextStyle,
+              ),
+            ],
+          ),
         ),
       ),
     );
