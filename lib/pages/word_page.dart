@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:dictionary_flutter/utilities/constants.dart';
-import 'package:dictionary_flutter/services/word.dart';
+import 'package:dictionary_flutter/utilities/meaning_card.dart';
 import 'package:audioplayers/audioplayers.dart';
 
 class WordPage extends StatefulWidget {
@@ -16,7 +16,7 @@ class _WordPageState extends State<WordPage> {
   late String searchedWord;
   late String phonetic;
   late String audioString;
-  late List<String> meanings;
+  late List<dynamic> meanings;
   AudioPlayer audioPlayer = AudioPlayer();
 
   void getWordData(dynamic wordData) {
@@ -25,7 +25,29 @@ class _WordPageState extends State<WordPage> {
     phonetic = wordInfo['phonetic'];
     int phoneticsLength = wordInfo['phonetics'].length;
     audioString = wordInfo['phonetics'][phoneticsLength - 1]['audio'];
-    print(audioString);
+    meanings = wordInfo['meanings'];
+    print(meanings);
+  }
+
+  List<Widget> getMeaningCard() {
+    List<Widget> meaningCards = [];
+    for (int i = 0; i < meanings.length; i++) {
+      var definitions = meanings[i];
+      String partOfSpeech = definitions['partOfSpeech'];
+      List<dynamic> allDefinitions = definitions['definitions'];
+      for (int i = 0; i < allDefinitions.length; i++) {
+        String meaning = allDefinitions[i]['definition'];
+        String example = allDefinitions[i]['example'] ?? '';
+        meaningCards.add(
+          MeaningCard(
+            partOfSpeech: partOfSpeech,
+            meaning: meaning,
+            example: example,
+          ),
+        );
+      }
+    }
+    return meaningCards;
   }
 
   void play() async {
@@ -87,6 +109,9 @@ class _WordPageState extends State<WordPage> {
                 phonetic,
                 style: kPhoneticTextStyle,
               ),
+              Column(
+                children: getMeaningCard(),
+              )
             ],
           ),
         ),

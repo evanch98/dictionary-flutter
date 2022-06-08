@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-const kAppBarColor = Color(0xFF90AACB);
 const kBackgroundColor = Color(0xFFFEF1E6);
 const kWidgetColor = Color(0xFFF9D5A7);
 
