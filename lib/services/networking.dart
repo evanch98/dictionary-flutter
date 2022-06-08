@@ -9,13 +9,7 @@ class Networking {
   Future getData() async {
     var url = Uri.parse(urlString);
     http.Response response = await http.get(url);
-
-    if (response.statusCode == 200) {
-      String data = response.body;
-      return jsonDecode(data);
-    } else {
-      String data = 'Network error';
-      return data;
-    }
+    String data = response.body;
+    return jsonDecode(data);
   }
 }

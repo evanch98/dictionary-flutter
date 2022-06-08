@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:dictionary_flutter/utilities/constants.dart';
 import 'package:dictionary_flutter/pages/word_page.dart';
+import 'package:dictionary_flutter/services/word.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -11,6 +12,17 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   late String searchedWord;
+  void getWordData() async {
+    var wordData = await WordData().getWordMeaning(searchedWord);
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) {
+          return WordPage(wordData: wordData);
+        },
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,16 +49,7 @@ class _HomeState extends State<Home> {
                   Expanded(
                     child: TextButton(
                       onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) {
-                              return WordPage(
-                                word: searchedWord,
-                              );
-                            },
-                          ),
-                        );
+                        getWordData();
                       },
                       child: kSearchIcon,
                     ),

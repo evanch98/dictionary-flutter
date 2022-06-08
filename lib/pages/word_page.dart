@@ -1,22 +1,66 @@
 import 'package:flutter/material.dart';
 import 'package:dictionary_flutter/utilities/constants.dart';
+import 'package:dictionary_flutter/services/word.dart';
+import 'package:audioplayers/audioplayers.dart';
 
-class WordPage extends StatelessWidget {
-  final String word;
+class WordPage extends StatefulWidget {
+  final dynamic wordData;
 
-  const WordPage({Key? key, required this.word}) : super(key: key);
+  const WordPage({Key? key, required this.wordData}) : super(key: key);
+
+  @override
+  State<WordPage> createState() => _WordPageState();
+}
+
+class _WordPageState extends State<WordPage> {
+  late String searchedWord;
+  late String phonetic;
+  late String audioString;
+  late List<String> meanings;
+  AudioPlayer audioPlayer = AudioPlayer();
+
+  void getWordData(dynamic wordData) {
+    var wordInfo = wordData[0];
+    searchedWord = wordInfo['word'];
+    phonetic = wordInfo['phonetic'];
+    int phoneticsLength = wordInfo['phonetics'].length;
+    audioString = wordInfo['phonetics'][phoneticsLength - 1]['audio'];
+    print(audioString);
+  }
+
+  void play() async {
+    int result = await audioPlayer.play(audioString);
+    if (result == 1) {
+      print('success');
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getWordData(widget.wordData);
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(word),
+        title: Text(searchedWord),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Text(word),
+            Text(
+              searchedWord,
+              style: kSearchedWordTextStyle,
+            ),
+            Text(phonetic),
+            TextButton(
+                onPressed: () {
+                  play();
+                },
+                child: Icon(Icons.surround_sound)),
           ],
         ),
       ),

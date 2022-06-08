@@ -34,3 +34,8 @@ const kHomePageTextStyle = TextStyle(
   fontWeight: FontWeight.bold,
   color: Color(0xFFFFB085),
 );
+
+const kSearchedWordTextStyle = TextStyle(
+  fontSize: 20.0,
+  fontWeight: FontWeight.bold,
+);
