@@ -20,17 +20,29 @@ class _WordPageState extends State<WordPage> {
   AudioPlayer audioPlayer = AudioPlayer();
 
   void getWordData(dynamic wordData) {
+    try {
+      if (wordData['title'] != null) {
+        searchedWord = wordData['title'];
+        phonetic = wordData['message'];
+        meanings = [];
+        return;
+      }
+    } catch (error) {
+      print(error);
+    }
     var wordInfo = wordData[0];
     searchedWord = wordInfo['word'];
     phonetic = wordInfo['phonetic'];
     int phoneticsLength = wordInfo['phonetics'].length;
     audioString = wordInfo['phonetics'][phoneticsLength - 1]['audio'];
     meanings = wordInfo['meanings'];
-    print(meanings);
   }
 
   List<Widget> getMeaningCard() {
     List<Widget> meaningCards = [];
+    if (meanings.isEmpty) {
+      return meaningCards;
+    }
     for (int i = 0; i < meanings.length; i++) {
       var definitions = meanings[i];
       String partOfSpeech = definitions['partOfSpeech'];
