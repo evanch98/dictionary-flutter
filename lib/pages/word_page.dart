@@ -51,16 +51,36 @@ class _WordPageState extends State<WordPage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Text(
-              searchedWord,
-              style: kSearchedWordTextStyle,
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    searchedWord,
+                    style: kSearchedWordTextStyle,
+                  ),
+                  const SizedBox(
+                    width: 5.0,
+                  ),
+                  TextButton(
+                    style: TextButton.styleFrom(
+                      minimumSize: Size.zero,
+                      padding: EdgeInsets.zero,
+                      tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                    ),
+                    onPressed: () {
+                      play();
+                    },
+                    child: const Icon(
+                      Icons.volume_up,
+                      color: Colors.black,
+                    ),
+                  ),
+                ],
+              ),
             ),
             Text(phonetic),
-            TextButton(
-                onPressed: () {
-                  play();
-                },
-                child: Icon(Icons.surround_sound)),
           ],
         ),
       ),
