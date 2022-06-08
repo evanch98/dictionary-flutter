@@ -28,15 +28,24 @@ class MeaningCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(partOfSpeech),
+          Text(
+            partOfSpeech,
+            style: kDefinitionTextStyle,
+          ),
           SizedBox(
             height: 5.0,
           ),
-          Text(meaning),
+          Text(
+            meaning,
+            style: kDefinitionTextStyle,
+          ),
           SizedBox(
             height: 5.0,
           ),
-          Text(example),
+          Text(
+            example,
+            style: kExampleTextStyle,
+          ),
         ],
       ),
     );

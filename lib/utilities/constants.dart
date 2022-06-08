@@ -43,3 +43,12 @@ const kPhoneticTextStyle = TextStyle(
   fontSize: 15.0,
   fontWeight: FontWeight.bold,
 );
+
+const kDefinitionTextStyle = TextStyle(
+  fontSize: 16.0,
+);
+
+const kExampleTextStyle = TextStyle(
+  fontSize: 16.0,
+  fontStyle: FontStyle.italic,
+);
